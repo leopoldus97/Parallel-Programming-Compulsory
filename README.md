@@ -27,7 +27,7 @@ to return a sorted list of all prime numbers in a given range, say between 1.000
     <a name="assignment3">Assignment 3:</a>
 </h3>
 
-As the image presented below indicates, the turning point between the sequential and the parallel implementation is between 3200 - 6400.
+As the image presented below indicates, the turning point in speed between the sequential and the parallel implementation is between 3200 - 6400 numbers.
 
 <img src="./Assignment3/parallel_programing_question_3_test.png" alt="test" width="600"/>
 
