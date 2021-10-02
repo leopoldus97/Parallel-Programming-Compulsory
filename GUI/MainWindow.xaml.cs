@@ -16,6 +16,7 @@ namespace GUI
             primeGenerator = new PrimeGenerator();
         }
 
+        // 4. GUI for the application
         private async void cmdPrimes_Click(object sender, RoutedEventArgs e)
         {
             cmdPrimes.Visibility = Visibility.Collapsed;
@@ -27,6 +28,7 @@ namespace GUI
 
             int startTime = Environment.TickCount;
 
+            // 4. Using of async-await to make the application non-freezing.
             List<long> primes = await primeGenerator.GetPrimesParallel(start, end);
 
             int stopTime = Environment.TickCount;

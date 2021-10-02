@@ -8,12 +8,24 @@ namespace GUI
 {
     public class PrimeGenerator : IPrimeGenerator
     {
-        public Task<List<long>> GetPrimesSequential(long first, long last) =>
-            Task.Factory.StartNew(() => Enumerable.Range((int)first, (int)(last - first) + 1)
-            .Where(num => IsPrime(num))
-            .Select(num => (long)num)
-            .ToList());
+        // 1. Sequential implementation for the GetPrime function.
+        public Task<List<long>> GetPrimesSequential(long first, long last)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                List<long> primeList = new List<long>();
+                for (long i = first; i <= last; i++)
+                {
+                    if (IsPrime(i))
+                    {
+                        primeList.Add(i);
+                    }
+                }
+                return primeList;
+            });
+        }
 
+        // 2. Parallel implementation for the GetPrime function.
         public Task<List<long>> GetPrimesParallel(long first, long last)
         {
             return Task.Factory.StartNew(() =>
@@ -28,6 +40,7 @@ namespace GUI
                         if (IsPrime(i))
                             localPrimeList.Add(i);
                     }
+                    // 2. Locking for solving the race-condition.
                     lock (lockObject)
                     {
                         primeList.AddRange(localPrimeList);
